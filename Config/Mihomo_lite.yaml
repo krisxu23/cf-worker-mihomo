@@ -61,13 +61,46 @@ proxy-providers:
       <<: *override
       additional-suffix: ' 1' # 节点名添加后缀
 
-#  provider2:
-#    <<: *p # 继承通用配置
-#    url: [订阅链接]
-#    path: ./proxies/provider2.yaml
-#    override:
-#      <<: *override
-#      additional-suffix: ' 2' # 节点名添加后缀
+proxy-providers:
+  # 第一个代理提供者
+  provider2:
+    <<: *p # 继承通用配置
+    url: [订阅链接]
+    path: ./proxies/provider2.yaml
+    override:
+      <<: *override
+      additional-suffix: ' 2' # 节点名添加后缀
+
+proxy-providers:
+  # 第一个代理提供者
+  provider3:
+    <<: *p # 继承通用配置
+    url: [订阅链接]
+    path: ./proxies/provider3.yaml
+    override:
+      <<: *override
+      additional-suffix: ' 3' # 节点名添加后缀
+
+proxy-providers:
+  # 第一个代理提供者
+  provider4:
+    <<: *p # 继承通用配置
+    url: [订阅链接]
+    path: ./proxies/provider4.yaml
+    override:
+      <<: *override
+      additional-suffix: ' 4' # 节点名添加后缀
+
+proxy-providers:
+  # 第一个代理提供者
+  provider5:
+    <<: *p # 继承通用配置
+    url: [订阅链接]
+    path: ./proxies/provider5.yaml
+    override:
+      <<: *override
+      additional-suffix: ' 5' # 节点名添加后缀	 
+
 
 ######################## end ########################
 
@@ -385,7 +418,7 @@ dns:
       - "quic://dns0.eu" # 公共（欧洲） DNS over DOQ
     "geosite:private,CN":
       - "quic://dns.18bit.cn" # 18bit DNS over DOQ
-      - "quic://2025.dns1.top" # 关圣 DNS over DOQ
+      - "https://a462598725.666.66a.net/dns-query" # 果冻 DNS over DOH
       - "quic://dns.alidns.com" # 阿里 DNS over DOQ
       - "quic://dns.adguard-dns.com" # AdGuard DNS over DOQ
   nameserver:
@@ -398,7 +431,7 @@ dns:
   direct-nameserver-follow-policy: true # 是否遵循 nameserver-policy，默认为不遵守，仅当 direct-nameserver 不为空时生效
 
 proxy-groups:
-  - { name: 🚀全球代理, type: select, proxies: [♻️自动选择, 🟢手动选择, ⚡️均衡负载, 🔯故障转移, 🎯全局直连, 🇭🇰香港自动, 🇹🇼台湾自动, 🇯🇵日本自动, 🇺🇸美国自动, 🇸🇬新加坡自动, 🇰🇷韩国自动] }
+  - { name: 🚀全球代理, type: select, proxies: [♻️自动选择, 🟢手动选择, ⚡️均衡负载, 🔯故障转移, 🎯全局直连, 🇭🇰香港自动, 🇹🇼台湾自动, 🇯🇵日本自动, 🇺🇸美国自动, 🇸🇬新加坡自动, 🇰🇷韩国自动，链式代理] }
   - { name: 🟢手动选择, <<: *u, type: select }
   - { name: 🎯全局直连, type: select, hidden: true, proxies: [DIRECT] }
   - { name: 🚫拒绝连接, type: select, hidden: true, proxies: [REJECT] }
@@ -410,6 +443,12 @@ proxy-groups:
   - { name: ♻️自动选择, <<: *u, tolerance: 1, type: url-test }
   - { name: ⚡️均衡负载, <<: *u, strategy: round-robin, type: load-balance }
   - { name: 🔯故障转移, <<: *u, type: fallback }
+  - { name: 链式代理,  type: relay, proxies: [中转机, 落地机], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/TIDAL_1.png}
+  - { name: 中转机,    type: select, proxies: [♻️自动选择, 🟢手动选择, ⚡️均衡负载, 🔯故障转移, 🎯全局直连, 🇭🇰香港自动, 🇹🇼台湾自动, 🇯🇵日本自动, 🇺🇸美国自动, 🇸🇬新加坡自动, 🇰🇷韩国自动], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Rocket.png}
+  - { name: 落地机,    type: select, use: [1], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Domestic.png}
+  - { name: 搬瓦工,    type: url-test,  use: [2], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Domestic.png}
+
+  
   - { name: 🇭🇰香港自动, <<: *u, hidden: true, filter: (?i)🇭🇰|\\bHK\\b|香港|Hong Kong }
   - { name: 🇹🇼台湾自动, <<: *u, hidden: true, filter: '(?i)🇹🇼|\bTW\b|台湾|Taiwan|Tai wan' }
   - { name: 🇯🇵日本自动, <<: *u, hidden: true, filter: '(?i)🇯🇵|\bJP\b|日本|Japan' }
