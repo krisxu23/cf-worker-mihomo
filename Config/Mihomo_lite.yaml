@@ -61,8 +61,7 @@ proxy-providers:
       <<: *override
       additional-suffix: ' 1' # 节点名添加后缀
 
-proxy-providers:
-  # 第一个代理提供者
+
   provider2:
     <<: *p # 继承通用配置
     url: [订阅链接]
@@ -71,8 +70,7 @@ proxy-providers:
       <<: *override
       additional-suffix: ' 2' # 节点名添加后缀
 
-proxy-providers:
-  # 第一个代理提供者
+
   provider3:
     <<: *p # 继承通用配置
     url: [订阅链接]
@@ -81,8 +79,7 @@ proxy-providers:
       <<: *override
       additional-suffix: ' 3' # 节点名添加后缀
 
-proxy-providers:
-  # 第一个代理提供者
+
   provider4:
     <<: *p # 继承通用配置
     url: [订阅链接]
@@ -91,8 +88,7 @@ proxy-providers:
       <<: *override
       additional-suffix: ' 4' # 节点名添加后缀
 
-proxy-providers:
-  # 第一个代理提供者
+
   provider5:
     <<: *p # 继承通用配置
     url: [订阅链接]
@@ -445,8 +441,8 @@ proxy-groups:
   - { name: 🔯故障转移, <<: *u, type: fallback }
   - { name: 链式代理,  type: relay, proxies: [中转机, 落地机], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/TIDAL_1.png}
   - { name: 中转机,    type: select, proxies: [♻️自动选择, 🟢手动选择, ⚡️均衡负载, 🔯故障转移, 🎯全局直连, 🇭🇰香港自动, 🇹🇼台湾自动, 🇯🇵日本自动, 🇺🇸美国自动, 🇸🇬新加坡自动, 🇰🇷韩国自动], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Rocket.png}
-  - { name: 落地机,    type: select, use: [1], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Domestic.png}
-  - { name: 搬瓦工,    type: url-test,  use: [2], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Domestic.png}
+  - { name: 落地机,    type: select, use: 1, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Domestic.png}
+  - { name: 搬瓦工,    type: url-test,  use: 2, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Domestic.png}
 
   
   - { name: 🇭🇰香港自动, <<: *u, hidden: true, filter: (?i)🇭🇰|\\bHK\\b|香港|Hong Kong }
