@@ -32,8 +32,7 @@
         "servers": [
             {
                 "tag": "local",
-                "address": "local",
-                "detour": "🎯 全球直连"
+                "address": "local"
             },
             {
                 "tag": "DIRECT-DNS",
@@ -44,7 +43,7 @@
             {
                 "tag": "PROXY-DNS",
                 "address_resolver": "local",
-                "address": "https://dns.google/dns-query",
+                "address": "https://cloudflare-dns.com/dns-query",
                 "detour": "🚀 节点选择"
             },
             {
@@ -101,6 +100,7 @@
             "strict_route": true,
             "endpoint_independent_nat": false,
             "stack": "gvisor",
+            "udp_timeout": "10m",
             "platform": {
                 "http_proxy": {
                     "enabled": true,
