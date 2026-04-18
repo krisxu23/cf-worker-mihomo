@@ -26,7 +26,7 @@ route:
     - { type: logical, mode: or, rules: [ { rule_set: [ cn_ip ] }, { rule_set: [ private_domain, private_ip ] } ], outbound: 🎯 全球直连 }
   rule_set:
     # MetaCubeX 规则集
-    - { tag: ads_domain, <<: *source_srs, url: https://jsd.onmicrosoft.cn/gh/TG-Twilight/AWAvenue-Ads-Rule@main/Filters/AWAvenue-Ads-Rule-Singbox.json }
+    - { tag: ads_domain, <<: *binary_srs, url: https://gcore.jsdelivr.net/gh/217heidai/adblockfilters@main/rules/adblocksingbox.srs }
     - { tag: private_ip, <<: *binary_srs, url: https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/private.srs }
     - { tag: private_domain, <<: *binary_srs, url: https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/private.srs }
     - { tag: cn_ip, <<: *binary_srs, url: https://jsd.onmicrosoft.cn/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs }
